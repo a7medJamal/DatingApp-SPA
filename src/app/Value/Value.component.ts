@@ -18,7 +18,7 @@ values: any;
 
   getValues() {
     this.http.get('http://localhost:5000/api/values').subscribe(response => {
-      console.log(response);
+      this.values = response.json()
      });
   }
 }
