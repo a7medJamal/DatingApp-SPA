@@ -1,5 +1,5 @@
+import { Http, Headers , RequestOptions , Response } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Http, Headers , RequestOptions , Response  } from '@angular/http';
  import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -19,8 +19,8 @@ login(model: any) {
 return this.http.post(this.baseUrl + 'login' , model, options).map((response: Response) => {
    const user = response.json();
     if (user) {
-        localStorage.setItem('token', user.tokenstring);
-        this.userToken = user.tokenstring;
+        localStorage.setItem('token', user.tokenString);
+        this.userToken = user.tokenString;
     }
 });
 }
