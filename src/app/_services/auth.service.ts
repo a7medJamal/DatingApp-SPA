@@ -4,7 +4,7 @@ import { Http, Headers , RequestOptions , Response  } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-    baseUrl = 'https://localhost:5000/api/auth';
+    baseUrl = 'https://localhost:5001/api/auth/';
     userToken: any;
 
 // tslint:disable-next-line: deprecation
