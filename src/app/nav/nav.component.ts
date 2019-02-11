@@ -11,8 +11,7 @@ model: any = {};
 
   ngOnInit() {
   }
-login()
-{
+login() {
   console.log(this.model);
 }
 }
