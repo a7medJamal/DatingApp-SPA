@@ -12,7 +12,7 @@ values: any;
 // tslint:disable-next-line: deprecation
  constructor(private http: Http) { }
 
-  ngOnInit() { 
+  ngOnInit() {
   }
   registerToggle() {
     this.registerMode = true;
