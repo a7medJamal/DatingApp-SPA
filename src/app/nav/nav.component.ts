@@ -29,8 +29,7 @@ login() {
      this.alertify.message('logged out');
   }
 
-loggedIn() {
-  const token = localStorage.getItem('token');
-  return !!token;
-}
+  loggedIn() {
+  return this.autservice.loggedIn();
+  }
 }
