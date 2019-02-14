@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import{HttpModule} from '@angular/http';
 // tslint:disable-next-line: import-spacing
 import{FormsModule} from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap';
+
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -25,6 +27,7 @@ import { AlertifyService } from './_services/alertify.service';
       FormsModule,
 // tslint:disable-next-line: deprecation
       HttpModule,
+      BsDropdownModule.forRoot()
    ],
    providers: [
       AuthService,
