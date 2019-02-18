@@ -14,16 +14,16 @@ export class UserService {
 // tslint:disable-next-line: deprecation
 constructor(private http: Http) { }
 
- getUser(): Observable<User[]> {
+ getUsers(): Observable<User[]> {
      return this.http.get(this.baseUrl + 'users', this.jwt())
-        .map(Response => <User[]> Response.json())
+        .map(response => <User[]>response.json())
         .catch(this.handleError);
- }
+  }
    private jwt() {
        const token = localStorage.getItem('token');
        if (token) {
 // tslint:disable-next-line: deprecation
-           const headers = new Headers({'Authorization' : 'Bearer' + token});
+           const headers = new Headers({'Authorization': 'Bearer ' + token});
            headers.append('Content-type', 'application/json');
 // tslint:disable-next-line: deprecation
            return new RequestOptions({headers: headers});
