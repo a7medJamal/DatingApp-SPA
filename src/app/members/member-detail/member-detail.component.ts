@@ -17,15 +17,9 @@ user: User;
      private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadUser();
-  }
-
-  // member/3
-  loadUser() {
-    this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {
-     this.user = user;
-    }, error => {
-    this.alertify.error(error);
+    // member/3
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
     });
   }
 }
