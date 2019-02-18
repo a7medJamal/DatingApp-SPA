@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import{HttpModule} from '@angular/http';
 // tslint:disable-next-line: import-spacing
 import{FormsModule} from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -44,7 +44,8 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
       FormsModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRouts),
-      AuthModule
+      AuthModule,
+      TabsModule.forRoot()
    ],
    providers: [
       AuthService,
