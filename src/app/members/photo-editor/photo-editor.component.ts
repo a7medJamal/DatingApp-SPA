@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { Photo } from '../../_models/Photo';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from '../../../environments/environment';
@@ -18,6 +18,7 @@ uploader: FileUploader;
 hasBaseDropZoneOver = false;
 baseUrl = environment.apiUrl;
 currentMain: Photo;
+@Output() getMemberPhotoChange = new EventEmitter<string>();
 
   constructor(private authService: AuthService,
     private userService: UserService,
@@ -60,8 +61,9 @@ currentMain: Photo;
  setMainPhoto(photo: Photo) {
   this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
   this.currentMain = _.findWhere(this.photos, {isMain: true});
-  this.currentMain.isMain = true;
+  this.currentMain.isMain = false;
   photo.isMain = true;
+  this.getMemberPhotoChange.emit(photo.url);
   }, error => {
   this.alertify.error(error);
   });
