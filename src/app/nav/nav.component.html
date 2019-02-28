@@ -34,7 +34,7 @@
         <!-- this for dropdownlist-->
         <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
           <li>
-            <img src="{{autservice.currentUser.photoUrl}}">
+            <img src="{{photoUrl}}">
           </li>
             <li class="dropdown" dropdown>
               <a (click)='false' class="dropdown-toggle" dropdownToggle>Welcome {{autservice.decodedToken?.unique_name | titlecase}}<span class="caret"></span></a>

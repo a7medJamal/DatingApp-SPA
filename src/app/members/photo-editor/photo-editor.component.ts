@@ -63,7 +63,9 @@ currentMain: Photo;
   this.currentMain = _.findWhere(this.photos, {isMain: true});
   this.currentMain.isMain = false;
   photo.isMain = true;
-  this.getMemberPhotoChange.emit(photo.url);
+  this.authService.changeMemberPhoto(photo.url);
+  this.authService.currentUser.photoUrl = photo.url;
+  localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
   }, error => {
   this.alertify.error(error);
   });

@@ -22,6 +22,7 @@ jwtHelper: JwtHelper = new JwtHelper();
     }
     if (user) {
     this.authService.currentUser = user;
+    this.authService.changeMemberPhoto(user.photoUrl);
     }
   }
 }
