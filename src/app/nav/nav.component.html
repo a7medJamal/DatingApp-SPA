@@ -33,10 +33,13 @@
         </form>
         <!-- this for dropdownlist-->
         <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
+          <li>
+            <img src="{{autservice.currentUser.photoUrl}}">
+          </li>
             <li class="dropdown" dropdown>
               <a (click)='false' class="dropdown-toggle" dropdownToggle>Welcome {{autservice.decodedToken?.unique_name | titlecase}}<span class="caret"></span></a>
               <ul class="dropdown-menu" *dropdownMenu>
-                <li><a [routerLink]="['/member/edit']"> <i class="fa fa-user"></i>Edit Profile</a></li>
+                <li><a [routerLink]="['/member/edit']"> <i class="fa fa-user"></i> Edit Profile</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a (click)="logout()"> <i class="fa fa-sign-out"></i> Logout</a></li>
               </ul>
