@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 // tslint:disable-next-line: import-spacing
 import{HttpModule} from '@angular/http';
 // tslint:disable-next-line: import-spacing
-import{FormsModule} from '@angular/forms';
+import{FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 
 
@@ -56,7 +56,8 @@ import { FileUploadModule } from 'ng2-file-upload';
       AuthModule,
       TabsModule.forRoot(),
       NgxGalleryModule,
-      FileUploadModule
+      FileUploadModule,
+      ReactiveFormsModule
    ],
    providers: [
       AuthService,
