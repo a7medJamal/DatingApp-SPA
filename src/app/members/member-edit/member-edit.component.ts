@@ -24,7 +24,7 @@ photoUrl: string;
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
-    this.authService.currentPhotoUrl.subscribe(photoUrl=> this.photoUrl = photoUrl);
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
   updateUser() {
     this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
