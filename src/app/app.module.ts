@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import{HttpModule} from '@angular/http';
 // tslint:disable-next-line: import-spacing
 import{FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import {TimeAgoPipe} from 'time-ago-pipe';
 
 
@@ -61,7 +61,8 @@ import { FileUploadModule } from 'ng2-file-upload';
       FileUploadModule,
       ReactiveFormsModule,
       BsDatepickerModule.forRoot(),
-      PaginationModule.forRoot()
+      PaginationModule.forRoot(),
+      ButtonsModule.forRoot()
    ],
    providers: [
       AuthService,
