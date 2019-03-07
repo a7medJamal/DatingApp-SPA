@@ -15,7 +15,7 @@ export class UserService {
   // tslint:disable-next-line: deprecation
   constructor(private authHttp: AuthHttp) { }
 
-  getUsers(page?: number, itemsPerPage?: number): Observable<User[]> {
+  getUsers(page?: number, itemsPerPage?: number) {
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
     let queryString = '?';
 
