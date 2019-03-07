@@ -6,54 +6,69 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { AuthHttp } from 'angular2-jwt';
-
+import { PaginatedResult } from '../_models/Pagination';
+import { Http, RequestOptions, Response } from '@angular/http';
 @Injectable()
 export class UserService {
-    baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
 
-// tslint:disable-next-line: deprecation
-constructor(private authHttp: AuthHttp) { }
+  // tslint:disable-next-line: deprecation
+  constructor(private authHttp: AuthHttp) { }
 
- getUsers(): Observable<User[]> {
-     return this.authHttp
-     .get(this.baseUrl + 'users')
-     .map(response => <User>response.json())
-     .catch(this.handleError);
+  getUsers(page?: number, itemsPerPage?: number): Observable<User[]> {
+    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
+    let queryString = '?';
+
+    if (page != null && itemsPerPage != null) {
+      queryString += 'pageNumber=' + page + '&pageSize=' + itemsPerPage;
+    }
+
+    return this.authHttp
+      .get(this.baseUrl + 'users' + queryString)
+      // tslint:disable-next-line: deprecation
+      .map((response: Response) => {
+        paginatedResult.result = response.json();
+        if (response.headers.get('Pagination') != null) {
+          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return paginatedResult;
+      })
+      .catch(this.handleError);
   }
 
   getUser(id): Observable<User> {
     return this.authHttp
-    .get(this.baseUrl + 'users/' + id)
-    .map(response => <User>response.json())
-    .catch(this.handleError);
- }
+      .get(this.baseUrl + 'users/' + id)
+      .map(response => <User>response.json())
+      .catch(this.handleError);
+  }
 
-   updateUser(id: number, user: User) {
+  updateUser(id: number, user: User) {
     return this.authHttp.put(this.baseUrl + 'users/' + id, user).catch(this.handleError);
-   }
+  }
 
-   setMainPhoto(userId: number, id: number) {
+  setMainPhoto(userId: number, id: number) {
     return this.authHttp.post(this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain', {}).catch(this.handleError);
-   }
-    deletePhoto(userId: number, id: number) {
-      return this.authHttp.delete(this.baseUrl + 'users/' + userId + '/photos/' + id).catch(this.handleError);
-        }
+  }
+  deletePhoto(userId: number, id: number) {
+    return this.authHttp.delete(this.baseUrl + 'users/' + userId + '/photos/' + id).catch(this.handleError);
+  }
 
-    private handleError(error: any) {
+  private handleError(error: any) {
     const applicationError = error.headers.get('Application-Error');
     if (applicationError) {
-    return Observable.throw(applicationError);
+      return Observable.throw(applicationError);
     }
     const serverError = error.json();
     let modelStateErrors = '';
     if (serverError) {
-    for (const key in serverError) {
-    if (serverError[key]) {
-    modelStateErrors += serverError[key] + '\n';
+      for (const key in serverError) {
+        if (serverError[key]) {
+          modelStateErrors += serverError[key] + '\n';
+        }
+      }
     }
-    }
-    }
-    return Observable.throw (
-    modelStateErrors || 'Server error');
-    }
+    return Observable.throw(
+      modelStateErrors || 'Server error');
+  }
 }
