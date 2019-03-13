@@ -1,10 +1,11 @@
-import { AuthService } from './../_services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { PaginatedResult, Pagination } from './../_models/Pagination';
+
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from './../_services/alertify.service';
-import { UserService } from './../_services/user.service';
-import { Pagination, PaginatedResult } from './../_models/Pagination';
+import { AuthService } from './../_services/auth.service';
 import { User } from './../_models/User';
-import { Component, OnInit } from '@angular/core';
+import { UserService } from './../_services/user.service';
 
 @Component({
   selector: 'app-lists',
